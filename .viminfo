@@ -14,14 +14,14 @@
 $
 
 # Command Line History (newest to oldest):
+:wq
 :q
+:w
 :q!
 :NeoComplCacheEnable
 :cs"<>
 :help surround
-:wq
 :surround 
-:w
 :set nospell
 :set spell
 :S
@@ -86,41 +86,46 @@ $
 "0	CHAR	0
 	a
 ""1	LINE	0
-	import nltk_data
+	
 "2	LINE	0
-	import beautifulsoup
+	"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "3	LINE	0
 	
 "4	LINE	0
-	dir(f)
+	"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "5	LINE	0
-	for i in f:
+	"
 "6	LINE	0
-	    print 
+	"    -> Helper functions
 "7	LINE	0
-	for i in "asdf":dd
+	"    -> Misc
 "8	LINE	0
-	    print foobar
+	"    -> Spell checking
 "9	LINE	0
-	:NeoComplCacheEnab
+	"    -> vimgrep searching and cope displaying
 "-	CHAR	0
 	sdf
 
 # File marks:
-'0  399  0  ~/.vimrc
-'1  2  0  ~/test.py
-'2  1  26  ~/test.html
-'3  2  3  ~/.vim/bundle/test.py
-'4  1  5  ~/.vim/bundle/test.txt
-'5  2  0  ~/.vim/bundle/test.txt
-'6  65  0  ~/.vimrc
-'7  1  0  ~/.vim/test.c
-'8  2  18  ~/todo.txt
-'9  14  0  ~/cool_project_ideas.txt
+'0  6  0  ~/.git/COMMIT_EDITMSG
+'1  307  4  ~/.vimrc
+'2  62  13  ~/.git/COMMIT_EDITMSG
+'3  357  0  ~/.vimrc
+'4  2  0  ~/test.py
+'5  1  26  ~/test.html
+'6  2  3  ~/.vim/bundle/test.py
+'7  1  5  ~/.vim/bundle/test.txt
+'8  2  0  ~/.vim/bundle/test.txt
+'9  23  0  ~/.vimrc
 
 # Jumplist (newest first):
--'  399  0  ~/.vimrc
--'  65  0  ~/.vimrc
+-'  6  0  ~/.git/COMMIT_EDITMSG
+-'  1  0  ~/.git/COMMIT_EDITMSG
+-'  307  4  ~/.vimrc
+-'  355  0  ~/.vimrc
+-'  357  0  ~/.vimrc
+-'  62  13  ~/.git/COMMIT_EDITMSG
+-'  23  0  ~/.vimrc
 -'  2  0  ~/test.py
 -'  1  0  ~/test.py
 -'  1  26  ~/test.html
@@ -211,26 +216,28 @@ $
 -'  132  7  ~/Downloads/linux/linux-2.6/fs/jffs2/malloc.c
 -'  126  7  ~/Downloads/linux/linux-2.6/fs/jffs2/malloc.c
 -'  125  8  ~/Downloads/linux/linux-2.6/fs/jffs2/malloc.c
--'  6  0  ~/Downloads/linux/linux-2.6/fs/jffs2/malloc.c
--'  1  0  ~/Downloads/linux/linux-2.6/fs/jffs2/malloc.c
--'  196  1  ~/Downloads/linux/linux-2.6/Documentation/00-INDEX
--'  1  5  ~/.vim/bundle/test.txt
--'  2  0  ~/.vim/bundle/test.txt
 
 # Buffer list:
-%~/.vimrc	399	0
+%~/.git/COMMIT_EDITMSG	6	0
 
 # History of marks within files (newest to oldest):
 
+> ~/.git/COMMIT_EDITMSG
+	"	6	0
+	^	62	14
+	.	62	13
+	+	62	13
+
 > ~/.vimrc
-	"	399	0
-	^	65	24
-	.	65	0
+	"	307	4
+	^	23	24
+	.	1	0
 	+	1	63
-	+	398	0
-	+	47	0
-	+	48	0
-	+	65	0
+	+	356	0
+	+	5	0
+	+	6	0
+	+	23	0
+	+	1	0
 
 > ~/test.py
 	"	2	0
