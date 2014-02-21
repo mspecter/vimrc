@@ -4,6 +4,10 @@
 " Sets how many lines of history VIM has to remember
 set history=700
 
+execute pathogen#infect()
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_working_path_mode = '0'
+
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
@@ -19,9 +23,6 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" Pathogen added:
-call pathogen#infect()
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -33,12 +34,14 @@ set wildmenu
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
+set wildignore+=*.so,*.swp,*.zip,*.docx,*.doc,*.pdf,*.exe,*.pptx
+set wildignore+=*.vmem,*.vmdk,*.vmss,*.nvram,*.vmsd,*.vmsn
 
 "Always show current position
 set ruler
 
 " Height of the command bar
-set cmdheight=2
+set cmdheight=1
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -83,16 +86,15 @@ set tm=500
 " Enable syntax highlighting
 syntax enable
 
-colorscheme desert
+""""OLD COLORSCHEME
 set background=dark
-
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-endif
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+" solarized options 
+"let g:solarized_visibility = "high"
+"let g:solarized_contrast = "high"
+colorscheme solarized
+"colorscheme desert
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -109,7 +111,6 @@ set nobackup
 set nowb
 set noswapfile
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -123,14 +124,12 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+" make it so the line wrapps correctly
+set linebreak
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -173,13 +172,6 @@ map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
 " Specify the behavior when switching between buffers 
 try
   set switchbuf=useopen,usetab,newtab
@@ -203,7 +195,7 @@ set viminfo^=%
 "set laststatus=2
 
 " Format the status line
-"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l 
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -248,7 +240,7 @@ map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
 
 " When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+"vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
@@ -261,10 +253,6 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 " To go to the previous search results do:
 "   <leader>p
 "
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -354,4 +342,26 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
+""hi ColorColumn ctermbg=DarkGreen guibg=lightblue
 
+
+au! FileType python setl nosmartindent
+
+
+"" Nerdtree bindings
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+map <C-n> :NERDTreeToggle<CR>
+
+
+"" I hate f1 as a help toggle, since escape is right there, this remaps f1 to escape
+inoremap <F1> <Esc>
+noremap <F1> :call MapF1()<CR>
+
+function! MapF1()
+  if &buftype == "help"
+    exec 'quit'
+  else
+    exec 'help'
+  endif
+endfunction
